@@ -1,0 +1,12 @@
+image: haskell
+
+stages:
+    - test
+
+test_chapters:
+    stage: test
+    script:
+        - stack test --install-ghc $CHAPTER
+    parallel:
+        matrix:
+            - CHAPTER: [Ch01, Ch02, Ch03, Ch04, Ch05, Ch06, Ch07, Ch08, Ch10, Ch12, Ch16] 
