@@ -9,11 +9,13 @@ import Prelude hiding (product)
 -- book Programming in Haskell.  Give another possible calculation for the
 -- result of `double (double 2)`.
 
-
 -- Complete the following block comment.
 {-
 double (double 2)
-= TODO continue
+= double (2 * 2)
+= double 4
+= 4 * 2
+= 8
 -}
 
 ------------------------------------------------------------------------
@@ -28,9 +30,10 @@ double (double 2)
 -- Complete the following block comment.
 {-
 sum [x]
-= TODO continue
+= x + sum []
+= x + 0
+= x
 -}
-
 
 ------------------------------------------------------------------------
 --                          Exercise 1.3 (*)                          --
@@ -38,12 +41,17 @@ sum [x]
 -- Define the function 'product' that produces the product of a list of numbers,
 -- and show using your definition that product [2,3,4] == 24.
 
-product :: Num p => [p] -> p
-product [] = {- TODO -} undefined
-product (n:ns) = {- TODO -} undefined
-
+product :: (Num p) => [p] -> p
+product [] = 1 -- Base case: the product of an empty list is 1
+product (n : ns) = n * product ns -- Recursive case
 
 {-
 product [2,3,4]
-= TODO
+= 2 * product [3,4]
+= 2 * (3 * product [4])
+= 2 * (3 * (4 * product []))
+= 2 * (3 * (4 * 1))  -- Base case: product of an empty list is 1
+= 2 * (3 * 4)
+= 2 * 12
+= 24
 -}
